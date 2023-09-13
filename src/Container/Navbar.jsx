@@ -28,7 +28,8 @@ const Navbar = () => {
   };
 
   const onSearch = (warehousename) => {
-    dispatch(searchWarehouse(warehousename, waredata));
+    const convertedName=warehousename.toUpperCase().charAt(0) + warehousename.slice(1)
+    dispatch(searchWarehouse(convertedName, waredata));
     navigate("/warehouseitems", {
       state: {
         name: warehouse,
@@ -63,7 +64,6 @@ const Navbar = () => {
     });
   };
 
-  
   return (
     <div className="topnav mb-4 ">
       <div className="dropdown">
