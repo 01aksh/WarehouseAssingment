@@ -28,8 +28,9 @@ const Navbar = () => {
   };
 
   const onSearch = (warehousename) => {
-    const convertedName=warehousename.toUpperCase().charAt(0) + warehousename.slice(1)
-    dispatch(searchWarehouse(convertedName, waredata));
+    const capitalizedSearch =
+      warehousename.toUpperCase().charAt(0) + warehousename.slice(1);
+    dispatch(searchWarehouse(capitalizedSearch, waredata));
     navigate("/warehouseitems", {
       state: {
         name: warehouse,
