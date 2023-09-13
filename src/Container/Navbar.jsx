@@ -9,17 +9,13 @@ import {
   searchWarehouse,
 } from "../Redux/action";
 import waredata from "../Util/warehouse.json";
+
 const Navbar = () => {
   const [warehouse, setWarehouse] = useState("");
   const [disabled, setdisabled] = useState(true);
 
   const navigate = useNavigate();
 
-  // const data = useSelector((state) => state.data);
-  const dataFilter = useSelector((state) => state.filteredData);
-  const clusterData = useSelector((state) => state.filteredCluster);
-  const spaceData = useSelector((state) => state.filteredSpace);
-  const searchedData = useSelector((state) => state.searchWareHouse);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -33,45 +29,36 @@ const Navbar = () => {
 
   const onSearch = (warehousename) => {
     dispatch(searchWarehouse(warehousename, waredata));
-    console.log(searchedData);
     navigate("/warehouseitems", {
       state: {
         name: warehouse,
-        searchData: searchedData,
       },
     });
     setWarehouse("");
   };
 
-  const onCityClick = async (cityname) => {
+  const onCityClick = (cityname) => {
     dispatch(filterData(cityname, waredata));
-    console.log(dataFilter);
-
     navigate("/city", {
       state: {
         city: cityname,
-        filterdata: dataFilter,
       },
     });
   };
   const onClusterClick = (clustername) => {
     dispatch(filteredCluster(clustername, waredata));
-    console.log(clusterData);
 
     navigate("/cluster", {
       state: {
         cluster: clustername,
-        filteredCluster: clusterData,
       },
     });
   };
   const onSpaceClick = (type) => {
     dispatch(filteredSpace(type, waredata));
-    console.log(spaceData);
     navigate("/spaceavailable", {
       state: {
         type: type,
-        filteredSpace: spaceData,
       },
     });
   };
@@ -149,7 +136,6 @@ const Navbar = () => {
         />
       </div>
     </div>
-   
   );
 };
 

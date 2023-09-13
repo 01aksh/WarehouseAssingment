@@ -1,22 +1,16 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router";
-import data from "../Util/warehouse.json";
+import { useSelector } from "react-redux";
 import CardComponent from "../Components/CardComponent/CardComponent";
 
 const ClusterPage = () => {
-  const navigate = useNavigate();
-
-  const location = useLocation();
-  console.log(location);
-
-  const items = location.state.filteredCluster;
-  console.log(items);
+  
+  const clusterData = useSelector((state) => state.filteredCluster);
 
   return (
     <div className="container">
       <div className="row">
-        {items.map((item) => {
-          return <CardComponent item={item} />;
+        {clusterData.map((item) => {
+          return <CardComponent item={item}  key={item.id}/>;
         })}
       </div>
     </div>

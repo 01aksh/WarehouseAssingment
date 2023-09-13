@@ -1,7 +1,7 @@
-import data from "../Util/warehouse.json";
+// import data from "../Util/warehouse.json";
 
 const initialState = {
-  data: data, // 
+  data: [], // 
   filteredData: [], 
   filteredCluster: [],
   filteredSpace:[],
@@ -42,11 +42,13 @@ const dataReducer = (state = initialState, action) => {
       const filteredSpace = spacedata.filter((item) => {
         return item.type === filterspacedata;
       });
-      console.log(state, filteredSpace);
+      console.log( filteredSpace);
       return {
         ...state,
-        filteredSpace,
+        filteredSpace:filteredSpace,
+        
       };
+      console.log(state);
       
     case "SEARCH_WAREHOUSE":
       console.log("ANOTHER_ACTION dispatched with payload:", action.payload);

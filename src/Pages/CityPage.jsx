@@ -1,21 +1,16 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router";
-import data from "../Util/warehouse.json";
 import CardComponent from "../Components/CardComponent/CardComponent";
+import { useSelector } from "react-redux";
+
+
 const CityPage = () => {
-  const navigate = useNavigate();
-  // console.log(data);
+  const dataFilter = useSelector((state) => state.filteredData);
 
-  const location = useLocation();
-  console.log(location);
-
-  const items = location.state.filterdata;
-  console.log(items);
   return (
     <div className="container">
       <div className="row">
-        {items.map((item) => {
-          return <CardComponent item={item}/>;
+        {dataFilter.map((item) => {
+          return <CardComponent item={item} key={item.id}/>;
         })}
       </div>
     </div>
