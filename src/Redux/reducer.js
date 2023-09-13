@@ -1,11 +1,10 @@
-// import data from "../Util/warehouse.json";
-
 const initialState = {
-  data: [], // 
-  filteredData: [], 
+  data: [],
+  filteredData: [],
   filteredCluster: [],
-  filteredSpace:[],
+  filteredSpace: [],
   searchWareHouse: [],
+  editedData: [],
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -21,7 +20,6 @@ const dataReducer = (state = initialState, action) => {
       };
 
     case "FILTER_CLUSTER":
-      console.log("ANOTHER_ACTION dispatched with payload:", action.payload);
 
       const { filterclusterdata, clusterdata } = action.payload;
 
@@ -35,23 +33,19 @@ const dataReducer = (state = initialState, action) => {
       };
 
     case "FILTER_SPACE":
-      console.log("ANOTHER_ACTION dispatched with payload:", action.payload);
 
       const { filterspacedata, spacedata } = action.payload;
 
       const filteredSpace = spacedata.filter((item) => {
         return item.type === filterspacedata;
       });
-      console.log( filteredSpace);
+      console.log(filteredSpace);
       return {
         ...state,
-        filteredSpace:filteredSpace,
-        
+        filteredSpace: filteredSpace,
       };
-      console.log(state);
-      
+
     case "SEARCH_WAREHOUSE":
-      console.log("ANOTHER_ACTION dispatched with payload:", action.payload);
 
       const { searchData, wareData } = action.payload;
 
@@ -63,6 +57,15 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         searchWareHouse,
       };
+
+    case "EDIT_WAREHOUSE_DETAILS":
+      const { editedData } = action.payload;
+      console.log(editedData);
+      return {
+        ...state,
+        editedData,
+      };
+
     default:
       return state;
   }

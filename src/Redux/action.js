@@ -1,8 +1,8 @@
-
-export const FILTER_DATA = 'FILTER_DATA';
-export const FILTER_CLUSTER = 'FILTER_CLUSTER';
-export const FILTER_SPACE = 'FILTER_SPACE';
-export const SEARCH_WAREHOUSE = 'SEARCH_WAREHOUSE';
+export const FILTER_DATA = "FILTER_DATA";
+export const FILTER_CLUSTER = "FILTER_CLUSTER";
+export const FILTER_SPACE = "FILTER_SPACE";
+export const SEARCH_WAREHOUSE = "SEARCH_WAREHOUSE";
+export const EDIT_WAREHOUSE_DETAILS = "EDIT_WAREHOUSE_DETAILS";
 
 export const filterData = (filterCriterion, data) => ({
   type: "FILTER_DATA",
@@ -30,5 +30,11 @@ export const searchWarehouse = (searchData, wareData) => ({
   payload: {
     searchData,
     wareData,
+  },
+});
+export const editWarehouseDetails = (editedData) => ({
+  type: "EDIT_WAREHOUSE_DETAILS",
+  payload: {
+    editedData,
   },
 });

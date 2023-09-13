@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import { editWarehouseDetails } from "../../Redux/action";
 
 const ViewDetails = () => {
   const location = useLocation();
-
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
 
   const [warehouseDetails, setWarehouseDetails] = useState({
@@ -15,6 +17,8 @@ const ViewDetails = () => {
     spaceAvailable: location.state.item.space_available,
   });
 
+  const editedData = useSelector((state) => state.editedData);
+
   const handleWarehouseDetails = (e) => {
     setWarehouseDetails({
       ...warehouseDetails,
@@ -25,6 +29,8 @@ const ViewDetails = () => {
     setEdit(true);
   };
   const onSaveClick = () => {
+    dispatch(editWarehouseDetails(warehouseDetails));
+
     alert("Details Saved SuccessFully");
     setEdit(false);
   };
@@ -83,17 +89,9 @@ const ViewDetails = () => {
             </div>
             <div className="d-flex flex-row justify-content-start align-items-center">
               <p className="fs-4 fw-medium">Code:</p>
-              {edit ? (
-                <input
-                  type="text"
-                  className="form-control w-50 ms-2 fs-4 mb-2"
-                  value={warehouseDetails.code}
-                />
-              ) : (
-                <p className="fs-4 fw-normal ms-2">
-                  {warehouseDetails.code}
-                </p>
-              )}
+              <p className="fs-4 fw-normal ms-2 readonly">
+                {warehouseDetails.code}
+              </p>
             </div>
             <div className="d-flex flex-row justify-content-start align-items-center ">
               <p className="fs-4 fw-medium">City:</p>
@@ -106,9 +104,7 @@ const ViewDetails = () => {
                   onChange={handleWarehouseDetails}
                 />
               ) : (
-                <p className="fs-4 fw-normal ms-2">
-                  {warehouseDetails.city}
-                </p>
+                <p className="fs-4 fw-normal ms-2">{warehouseDetails.city}</p>
               )}
             </div>
             <div className="d-flex flex-row justify-content-start align-items-center ">
@@ -136,9 +132,7 @@ const ViewDetails = () => {
                   value={warehouseDetails.type}
                 />
               ) : (
-                <p className="fs-4 fw-normal ms-2">
-                  {warehouseDetails.type}
-                </p>
+                <p className="fs-4 fw-normal ms-2">{warehouseDetails.type}</p>
               )}
             </div>
             <div className="d-flex flex-row justify-content-start align-items-center ">
